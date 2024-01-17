@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => 'https://www.tiktok.com/@ulyashafa/video/7284056731062258949?q=pemoglow&t=1705384837795',
+	CURLOPT_URL => 'https://www.tiktok.com/@pomeglowofficial/video/7098964216316546331',
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_ENCODING => '',
 	CURLOPT_MAXREDIRS => 10,
@@ -31,7 +31,9 @@ if (isset($matches[1])) {
     $jsonContent = $matches[1];
 
     $jsonData = json_decode($jsonContent, true)['__DEFAULT_SCOPE__']['webapp.video-detail']['itemInfo']['itemStruct'];
-    print_r($jsonData);
+    // print_r($jsonData);
+
+	echo $jsonData['stats']['diggCount'];
 } else {
     echo "Script tag dengan ID __UNIVERSAL_DATA_FOR_REHYDRATION__ tidak ditemukan.";
 }
