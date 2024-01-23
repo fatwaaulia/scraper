@@ -31,9 +31,17 @@ if (isset($matches[1])) {
     $jsonContent = $matches[1];
 
     $jsonData = json_decode($jsonContent, true)['__DEFAULT_SCOPE__']['webapp.video-detail']['itemInfo']['itemStruct'];
-    // print_r($jsonData);
 
-	echo $jsonData['stats']['diggCount'];
+	$reel_data = [
+		'username'         => $jsonData['author']['uniqueId'],
+    	'video_url'        => $jsonData['video']['playAddr'],
+		'caption'		   => $jsonData['desc'],
+		'like' 			   => $jsonData['stats']['diggCount'],
+		'video_play_count' => $jsonData['stats']['playCount'],
+	];
+
+	echo json_encode($reel_data);
+
 } else {
     echo "Script tag dengan ID __UNIVERSAL_DATA_FOR_REHYDRATION__ tidak ditemukan.";
 }
