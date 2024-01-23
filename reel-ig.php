@@ -3,10 +3,10 @@ header('Content-Type: application/json');
 
 $curl = curl_init();
 
-$url_reel = 'https://www.instagram.com/reel/C2GTlaISSwT/';
+$reel_url = 'https://www.instagram.com/reel/C2GTlaISSwT/';
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "$url_reel?__a=1&__d=dis",
+    CURLOPT_URL => "$reel_url?__a=1&__d=dis",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -25,7 +25,7 @@ curl_close($curl);
 
 $jsonData = json_decode($response, true)['graphql']['shortcode_media'];
 
-$reel = [
+$reel_data = [
     'username'         => $jsonData['owner']['username'],
     'video_url'        => $jsonData['video_url'],
     'caption'          => $jsonData['edge_media_to_caption']['edges'][0]['node']['text'],
@@ -34,4 +34,4 @@ $reel = [
     'video_play_count' => $jsonData['video_play_count'],
 ];
 
-echo json_encode($reel);
+echo json_encode($reel_data);
