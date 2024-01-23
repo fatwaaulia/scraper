@@ -26,10 +26,12 @@ curl_close($curl);
 $jsonData = json_decode($response, true)['graphql']['shortcode_media'];
 
 $reel = [
-    'username'   => $jsonData['owner']['username'],
-    'video_url'  => $jsonData['video_url'],
-    'caption'    => $jsonData['edge_media_to_caption']['edges'][0]['node']['text'],
-    'like'       => $jsonData['edge_media_preview_like']['count'],
+    'username'         => $jsonData['owner']['username'],
+    'video_url'        => $jsonData['video_url'],
+    'caption'          => $jsonData['edge_media_to_caption']['edges'][0]['node']['text'],
+    'like'             => $jsonData['edge_media_preview_like']['count'],
+    'video_view_count' => $jsonData['video_view_count'],
+    'video_play_count' => $jsonData['video_play_count'],
 ];
 
 echo json_encode($reel);
